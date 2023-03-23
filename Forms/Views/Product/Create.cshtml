@@ -1,0 +1,80 @@
+﻿@model CreateProductViewModel
+
+@section CSS {
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+}
+
+<h1>Add New Product !</h1>
+<hr />
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Name" class="label-control"></label>
+                <input required asp-for="Name" class="form-control" />
+                @*<input name="Name" class="form-control" />*@
+            </div>
+        </div>
+        @*<div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Description" class="label-control"></label>
+                <input required asp-for="Description" class="form-control" />
+            </div>
+        </div>*@
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label asp-for="Description" class="label-control"></label>
+                <textarea id="productDescription" asp-for="Description" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="label-control"></label>
+                @*to apply file type for image*@
+                <input type="file" asp-for="ImageUrl" class="form-control" />
+                @*<input required asp-for="ImageUrl" class="form-control" />*@
+                @*<input name="Name" class="form-control" />*@
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="Price" class="label-control"></label>
+                <input required asp-for="Price" class="form-control" />
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="CategoryId" class="label-control"></label>
+                @*to create select category name *@
+                <select asp-for="CategoryId" asp-items="ViewBag.categoryList" class="form-control">
+                </select>
+                @*<input required asp-for="CategoryId" class="form-control" />*@
+                @*<input name="Name" class="form-control" />*@
+            </div>
+        </div>
+    </div>
+    <br />
+    <input type="submit" class="btn btn-primary" value="Save" />
+    <a asp-controller="Product" asp-action="Index" class="btn btn-danger">Back</a>
+</form>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#productDescription').summernote({
+                placeholder: 'Write Product Info',
+                height: 400
+            });
+        });
+    </script>
+}
